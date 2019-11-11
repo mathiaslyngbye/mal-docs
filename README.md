@@ -17,10 +17,10 @@ public, in case some poor soul should encounter a similar problem.
 Solution based on the following [answer](https://askubuntu.com/a/715310).
 
 Configured file `/etc/X11/xorg.conf`
-`` bash
+``` bash
 Section "Device"
 Identifier  "Card0"
 Driver      "intel"
 Option      "Backlight" "/sys/class/backlight/intel_backlight"
 EndSection
-``
+```
