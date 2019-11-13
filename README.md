@@ -10,7 +10,7 @@ public, in case some poor soul should encounter a similar problem.
 ## Connecting to wpa enterprise wi-fi through nmcli 
 ### Context
 ### Solution
-Configured file `/etc/NetworkManager/system-connections/eduroam`.
+Configure file `/etc/NetworkManager/system-connections/eduroam`.
 ``` bash
 [connection]
 id=eduroam
@@ -50,11 +50,27 @@ method=auto
 ### Solution
 Solution based on the following [answer](https://askubuntu.com/a/715310).
 
-Configured file `/etc/X11/xorg.conf`
+Configure file `/etc/X11/xorg.conf`
 ``` bash
 Section "Device"
 Identifier  "Card0"
 Driver      "intel"
 Option      "Backlight" "/sys/class/backlight/intel_backlight"
+EndSection
+```
+
+## Enable touchpad tap-to-click
+### Context
+### Solution
+Solution based on the following [answer](https://askubuntu.com/a/1088009).
+
+Configure file `/etc/X11/xorg.conf.d/30-touch.conf` 
+(create directories if necessary).
+``` bash
+Section "InputClass"   
+    Identifier "touchpad"  
+    Driver "libinput"  
+    MatchIsTouchpad "on"  
+    Option "Tapping" "on"  
 EndSection
 ```
