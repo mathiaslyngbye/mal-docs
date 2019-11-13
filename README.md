@@ -10,10 +10,15 @@ public, in case some poor soul should encounter a similar problem.
 ## Connecting to wpa enterprise wi-fi through nmcli 
 ### Context
 ### Solution
-Configure file `/etc/NetworkManager/system-connections/eduroam`.
+Solution was obtained by pseudo copying the interface file of an 
+automatically configured working connection of another computer.
+
+Configure file `/etc/NetworkManager/system-connections/eduroam`, replacing
+`<variable>` with your own information (notes below).
+
 ``` bash
 [connection]
-id=eduroam
+id=<your_ssid>
 uuid=<your_uuid>
 type=wifi
 interface-name=<your_interface>
@@ -44,6 +49,22 @@ addr-gen-mode=stable-privacy
 dns-search=
 method=auto
 ```
+
+
+In my case, I created the base file through nmcli with the following command. 
+
+``` bash
+nmcli con add type wifi ifname <your_interface> con-name <your_connection_name> ssid <your_ssid>
+```
+
+Here both `<your_connection_name>` and `<your_ssid>` are `eduroam`, and
+`<your_interface>` is my wifi interface, `wlp2s0` (this interface may be 
+obtained through
+`ifconfig`). 
+
+Additionally, `<your_mac-address>` may be obtained through `ifconfig`. This is
+defined under your wifi interface, prefixed by `ether`. Finally, `<your_identity>` and `<your_password>` are my log-in credentials. In
+this case my university mail and password.
 
 ## Changing screen brightness with xbacklight
 ### Context
